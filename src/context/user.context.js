@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const INIT_STATE = {
@@ -7,13 +8,26 @@ const INIT_STATE = {
 };
 
 var User = React.createContext(INIT_STATE);
-
+User.displayName ="User";
 
 export class Authentication extends React.Component{
-    render(){
+    state = INIT_STATE;
+
+    signup = () => {
+        console.log("signup cliked");
+        this.setState({
+            isLoggedIn : true
+        })
+    }
+
+    render()
+    {
         var {children} = this.props
         return(
-            <User.Provider value={INIT_STATE}>
+            <User.Provider value={{
+                user : this.state,
+                signup : this.signup
+            }}>
                 {children}
             </User.Provider>
         )
