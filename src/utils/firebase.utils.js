@@ -1,4 +1,7 @@
-import firebase from "firebase";
+import {initializeApp} from "firebase/app";
+import {getAuth,GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {getFirestore} from "firebase/firestore"
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -11,4 +14,15 @@ const firebaseConfig = {
   };
 
   // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+// these are required for authentication purpose
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+
+// this will allow us to communicate with firestore 
+export const db = getFirestore(app)
+
+export const signupWithGoogleAccount = () =>{
+  return signInWithPopup(auth,provider);
+}
