@@ -1,14 +1,14 @@
 import { Card, Col, Container, Row,Button } from "react-bootstrap";
 import { Redirect } from "react-router";
-import User from "../../context/user.context";
+import UserContext from "../../context/user.context";
  
 
 function Signup() {
     return (
-        <User.Consumer>
+        <UserContext.Consumer>
             {
-               ({user,signup}) => user.isLoggedIn? <Redirect to="/quiz"  /> 
-               : (
+               ({user,signup}) => user.isLoggedIn ? (<Redirect to="/quiz"  /> 
+               ): (
                <div>
                   <Container>
                       <Row className="justify-content-center mt-4" >
@@ -25,7 +25,7 @@ function Signup() {
                 </div>
                )
             }
-        </User.Consumer>
+        </UserContext.Consumer>
         
     )
 }

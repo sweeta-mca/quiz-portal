@@ -5,7 +5,10 @@ function Protected({children}){
     return (
         <User.Consumer>
             {
-                ({user}) => user.isLoggedIn ? children : <Redirect to="/signup" />
+                ({user}) => {
+                    console.log("protected : "+user.isLoggedIn);
+                    return user.isLoggedIn ? children : (<Redirect to="/signup" />)
+                }
             }
         </User.Consumer>
     )
